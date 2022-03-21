@@ -1,0 +1,54 @@
+.profile {
+  display: flex;
+  color: #fff;
+  width: 100%;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 46px;
+}
+
+.profile__info {
+  flex-grow: 1;
+}
+
+.profile__image {
+  border-radius: 50%;
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.profile__person {
+  display: flex;
+  gap: 18px;
+  align-items: flex-end;
+}
+
+.profile__name {
+  padding: 0;
+  margin: 0;
+  font-size: 42px;
+  line-height: 1.14;
+  font-weight: 500;
+  /*figure out how to not include the bottom of "q" in the margin calculation*/
+}
+
+.profile__title {
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+.profile__edit-button {
+  padding: 7px;
+  border: #fff solid 1px;
+  box-sizing: border-box;
+  max-width: 24px;
+  max-height: 24px;
+  margin-bottom: 8px;
+}
+
+.profile__add-button {
+  padding: 14px 64px;
+  border: solid 2px #fff;
+  border-radius: 2px;
+}
