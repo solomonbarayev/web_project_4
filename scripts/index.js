@@ -1,9 +1,10 @@
 const form = document.querySelector(".form");
 const profile = document.querySelector(".profile");
-let profileName = profile.querySelector(".profile__name");
-let profileTitle = profile.querySelector(".profile__title");
-let inputName = form.querySelector(".form__input[name='name']");
-let inputTitle = form.querySelector(".form__input[name='title']");
+
+const profileName = profile.querySelector(".profile__name");
+const profileTitle = profile.querySelector(".profile__title");
+const inputName = form.querySelector(".form__input[name='name']");
+const inputTitle = form.querySelector(".form__input[name='title']");
 
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
