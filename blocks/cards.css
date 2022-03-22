@@ -1,10 +1,16 @@
-.cards__image {
+.card {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__image {
   width: 100%;
   display: block;
   border-radius: 10px 10px 0 0;
 }
 
-.cards__title-area {
+.card__title-area {
   background-color: white;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -17,7 +23,7 @@
   border-radius: 0 0 10px 10px;
 }
 
-.cards__title {
+.card__title {
   margin: 0;
   padding: 0;
   margin-block-start: 0;
@@ -31,7 +37,7 @@
   line-height: 1.2;
 }
 
-.cards__like-button {
+.card__like-button {
   background: none;
   border: none;
   padding: 0;
@@ -45,14 +51,10 @@
   cursor: pointer;
 }
 
-.cards__like-button_active {
+.card__like-button_active {
   background-image: url(../images/icons/heart_icon-filled.svg);
 }
 
-.cards__like-button:hover {
+.card__like-button:hover {
   opacity: 0.5;
-}
-
-.cards__heart-icon:active {
-  fill: black;
 }
