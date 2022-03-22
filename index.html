@@ -56,7 +56,7 @@
             />
             <div class="elements__title-area">
               <h2 class="elements__title">Yosemite Valley</h2>
-              <img src="./images/icons/heart_icon.svg" alt="" />
+              <button class="elements__like-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -67,7 +67,7 @@
             />
             <div class="elements__title-area">
               <h2 class="elements__title">Lake Louise</h2>
-              <img src="./images/icons/heart_icon.svg" alt="" />
+              <button class="elements__like-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -78,7 +78,7 @@
             />
             <div class="elements__title-area">
               <h2 class="elements__title">Bald Mountains</h2>
-              <img src="./images/icons/heart_icon.svg" alt="" />
+              <button class="elements__like-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -89,7 +89,7 @@
             />
             <div class="elements__title-area">
               <h2 class="elements__title">Latemar</h2>
-              <img src="./images/icons/heart_icon.svg" alt="" />
+              <button class="elements__like-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -100,7 +100,7 @@
             />
             <div class="elements__title-area">
               <h2 class="elements__title">Vanoise National Park</h2>
-              <img src="./images/icons/heart_icon.svg" alt="" />
+              <button class="elements__like-button"></button>
             </div>
           </li>
           <li class="elements__element">
@@ -111,14 +111,46 @@
             />
             <div class="elements__title-area">
               <h2 class="elements__title">Lago di Braies</h2>
-              <img src="./images/icons/heart_icon.svg" alt="" />
+              <button class="elements__like-button"></button>
             </div>
           </li>
         </ul>
+      </section>
+      <section class="popup">
+        <div class="popup__container">
+          <a class="popup__close-button">
+            <img
+              src="./images/icons/close_icon.svg"
+              alt="close icon"
+              class="popup__close-icon"
+            />
+          </a>
+          <h2 class="popup__title">Edit profile</h2>
+          <form action="" class="form popup__form">
+            <fieldset class="form__fieldset">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                class="form__input"
+              />
+              <input
+                type="text"
+                name="title"
+                placeholder="About me"
+                class="form__input"
+              />
+            </fieldset>
+            <fieldset class="form__fieldset">
+              <button class="form__button" type="submit">Save</button>
+            </fieldset>
+          </form>
+        </div>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyrights">© 2021 Around The U.S.</p>
     </footer>
+    <script src="./pages/index.js"></script>
   </body>
 </html>

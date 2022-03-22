@@ -45,6 +45,12 @@
   max-width: 24px;
   max-height: 24px;
   margin-bottom: 8px;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
 }
 
 .profile__add-button {
@@ -52,6 +58,12 @@
   border: solid 2px #fff;
   border-radius: 2px;
   box-sizing: border-box;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
 }
 
 .profile__add-icon {
@@ -100,5 +112,11 @@
   .profile__title {
     font-size: 14px;
     line-height: 1.21;
+  }
+
+  .profile__edit-button {
+    padding: 5px;
+    max-width: 17px;
+    max-height: 17px;
   }
 }
