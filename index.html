@@ -16,10 +16,10 @@
     <title>Document</title>
   </head>
   <body class="body">
-    <header class="header">
+    <header class="header section section_padded">
       <img src="./images/logo.svg" alt="Around the US Logo" class="logo" />
     </header>
-    <main class="content">
+    <main class="content section section_padded">
       <div class="separator"></div>
       <section class="profile">
         <img
@@ -30,11 +30,18 @@
         <div class="profile__info">
           <div class="profile__person">
             <h1 class="profile__name">Jacques Cousteau</h1>
-            <img
+            <button class="profile__edit-button">
+              <img
+                src="./images/icons/edit_icon.svg"
+                alt="edit icon"
+                class="profile__edit-icon"
+              />
+            </button>
+            <!-- <img
               src="./images/icons/edit_icon.svg"
               alt="edit icon"
               class="profile__edit-button"
-            />
+            /> -->
           </div>
           <p class="profile__title">Explorer</p>
         </div>
@@ -46,72 +53,72 @@
           />
         </a>
       </section>
-      <section class="elements">
-        <ul class="elements__list">
-          <li class="elements__element">
+      <section class="cards">
+        <ul class="cards__list">
+          <li class="cards__element">
             <img
-              src="./images/elements__element_1.jpg"
+              src="./images/cards__element_1.jpg"
               alt=""
-              class="elements__image"
+              class="cards__image"
             />
-            <div class="elements__title-area">
-              <h2 class="elements__title">Yosemite Valley</h2>
-              <button class="elements__like-button"></button>
+            <div class="cards__title-area">
+              <h2 class="cards__title">Yosemite Valley</h2>
+              <button class="cards__like-button"></button>
             </div>
           </li>
-          <li class="elements__element">
+          <li class="cards__element">
             <img
-              src="./images/elements__element_2.jpg"
+              src="./images/cards__element_2.jpg"
               alt=""
-              class="elements__image"
+              class="cards__image"
             />
-            <div class="elements__title-area">
-              <h2 class="elements__title">Lake Louise</h2>
-              <button class="elements__like-button"></button>
+            <div class="cards__title-area">
+              <h2 class="cards__title">Lake Louise</h2>
+              <button class="cards__like-button"></button>
             </div>
           </li>
-          <li class="elements__element">
+          <li class="cards__element">
             <img
-              src="./images/elements__element_3.jpg"
+              src="./images/cards__element_3.jpg"
               alt=""
-              class="elements__image"
+              class="cards__image"
             />
-            <div class="elements__title-area">
-              <h2 class="elements__title">Bald Mountains</h2>
-              <button class="elements__like-button"></button>
+            <div class="cards__title-area">
+              <h2 class="cards__title">Bald Mountains</h2>
+              <button class="cards__like-button"></button>
             </div>
           </li>
-          <li class="elements__element">
+          <li class="cards__element">
             <img
-              src="./images/elements__element_4.jpg"
+              src="./images/cards__element_4.jpg"
               alt=""
-              class="elements__image"
+              class="cards__image"
             />
-            <div class="elements__title-area">
-              <h2 class="elements__title">Latemar</h2>
-              <button class="elements__like-button"></button>
+            <div class="cards__title-area">
+              <h2 class="cards__title">Latemar</h2>
+              <button class="cards__like-button"></button>
             </div>
           </li>
-          <li class="elements__element">
+          <li class="cards__element">
             <img
-              src="./images/elements__element_5.jpg"
+              src="./images/cards__element_5.jpg"
               alt=""
-              class="elements__image"
+              class="cards__image"
             />
-            <div class="elements__title-area">
-              <h2 class="elements__title">Vanoise National Park</h2>
-              <button class="elements__like-button"></button>
+            <div class="cards__title-area">
+              <h2 class="cards__title">Vanoise National Park</h2>
+              <button class="cards__like-button"></button>
             </div>
           </li>
-          <li class="elements__element">
+          <li class="cards__element">
             <img
-              src="./images/elements__element_6.jpg"
+              src="./images/cards__element_6.jpg"
               alt=""
-              class="elements__image"
+              class="cards__image"
             />
-            <div class="elements__title-area">
-              <h2 class="elements__title">Lago di Braies</h2>
-              <button class="elements__like-button"></button>
+            <div class="cards__title-area">
+              <h2 class="cards__title">Lago di Braies</h2>
+              <button class="cards__like-button"></button>
             </div>
           </li>
         </ul>
@@ -148,9 +155,9 @@
         </div>
       </section>
     </main>
-    <footer class="footer">
+    <footer class="footer section section_padded">
       <p class="footer__copyrights">© 2021 Around The U.S.</p>
     </footer>
-    <script src="./pages/index.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

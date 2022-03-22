@@ -20,7 +20,6 @@ function toggleForm() {
 
 function formHandler(event) {
   event.preventDefault();
-
   profileName.textContent = inputName.value;
   profileTitle.textContent = inputTitle.value;
 }
@@ -30,5 +29,4 @@ function formHandler(event) {
 ///////////////
 editProfileButton.addEventListener("click", toggleForm);
 closeButton.addEventListener("click", toggleForm);
-
 form.addEventListener("submit", formHandler);

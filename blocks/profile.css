@@ -39,14 +39,21 @@
 }
 
 .profile__edit-button {
+  background: none;
   padding: 7px;
   border: #fff solid 1px;
   box-sizing: border-box;
-  max-width: 24px;
-  max-height: 24px;
   margin-bottom: 8px;
   transition: all 0.2s ease-out;
   cursor: pointer;
+  max-height: 24px;
+  max-width: 24px;
+}
+
+.profile__edit-icon {
+  width: 10px;
+  height: 10px;
+  display: block;
 }
 
 .profile__edit-button:hover {
