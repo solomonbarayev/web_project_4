@@ -1,0 +1,11 @@
+.profile__title {
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+@media screen and (max-width: 320px) {
+  .profile__title {
+    font-size: 14px;
+    line-height: 1.21;
+  }
+}

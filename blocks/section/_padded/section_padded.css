@@ -1,9 +1,3 @@
-.section {
-}
-
-.section_padded {
-}
-
 @media screen and (max-width: 920px) {
   .section_padded {
     padding: 0 19px;
