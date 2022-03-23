@@ -3,3 +3,9 @@
   gap: 18px;
   align-items: flex-end;
 }
+
+@media screen and (max-width: 320px) {
+  .profile__person {
+    gap: 9px;
+  }
+}

@@ -35,6 +35,7 @@
 @media screen and (max-width: 320px) {
   .profile {
     margin-bottom: 36px;
+    gap: 33px;
   }
   .profile__name {
     font-size: 22px;

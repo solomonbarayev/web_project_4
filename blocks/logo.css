@@ -7,5 +7,6 @@
   .logo {
     max-width: 126px;
     max-height: 24px;
+    margin-left: calc(27px - 19px);
   }
 }
