@@ -1,5 +1,6 @@
 const form = document.querySelector(".form");
 const profile = document.querySelector(".profile");
+const saveButton = form.querySelector(".form__button");
 
 const profileName = profile.querySelector(".profile__name");
 const profileTitle = profile.querySelector(".profile__title");
@@ -10,13 +11,22 @@ const editProfileButton = profile.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
 const closeButton = popup.querySelector(".popup__close-button");
 
+////adding these to enable like button functionality
+const cards = document.querySelector(".cards");
+const likesButtons = cards.querySelectorAll(".card__like-button");
+
 ///////////////
 //Event Handlers
 ///////////////
-function toggleForm() {
+
+function openForm() {
   inputName.value = profileName.textContent;
   inputTitle.value = profileTitle.textContent;
-  popup.classList.toggle("popup_opened");
+  popup.classList.add("popup_opened");
+}
+
+function closeForm() {
+  popup.classList.remove("popup_opened");
 }
 
 function formHandler(event) {
@@ -25,19 +35,19 @@ function formHandler(event) {
   profileTitle.textContent = inputTitle.value;
 }
 
-///////////////
-//Event Listeners
-///////////////
-editProfileButton.addEventListener("click", toggleForm);
-closeButton.addEventListener("click", toggleForm);
-form.addEventListener("submit", formHandler);
-
-let likesButtons = document.querySelectorAll(".card__like-button");
-
+//loop for like button functionality
 for (let i = 0; i < likesButtons.length; i++) {
-  let likeButton = likesButtons[i];
+  const likeButton = likesButtons[i];
   function toggleLike() {
     likeButton.classList.toggle("card__like-button_active");
   }
   likeButton.addEventListener("click", toggleLike);
 }
+
+///////////////
+//Event Listeners
+///////////////
+editProfileButton.addEventListener("click", openForm);
+closeButton.addEventListener("click", closeForm);
+saveButton.addEventListener("click", closeForm);
+form.addEventListener("submit", formHandler);
