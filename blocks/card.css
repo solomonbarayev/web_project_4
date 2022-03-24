@@ -4,3 +4,60 @@
   overflow: hidden;
   min-height: 367px;
 }
+
+.card__image {
+  width: 100%;
+  display: block;
+  border-radius: 10px 10px 0 0;
+  min-height: 285px;
+  object-fit: cover;
+}
+
+.card__title-area {
+  background-color: white;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 15px 24px 21px;
+  border-radius: 0 0 10px 10px;
+}
+
+.card__title {
+  margin: 0;
+  padding: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-grow: 1;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.card__like-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  background-image: url(../images/icons/heart_icon.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-width: 21px;
+  min-height: 19px;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.card__like-button:hover {
+  opacity: 0.5;
+}
+
+.card__like-button_active {
+  background-image: url(../images/icons/heart_icon-filled.svg);
+}

@@ -14,10 +14,62 @@
   line-height: 1.22;
 }
 
+.popup_opened {
+  display: flex;
+}
+
+.popup__container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  padding: 34px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.popup__close-button {
+  position: absolute;
+  top: -38px;
+  right: -38px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  background-color: transparent;
+  background-image: url("../images/icons/close_icon.svg");
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  background-position: center;
+  border: none;
+  padding: 20px;
+}
+
+.popup__close-button:hover {
+  opacity: 0.6;
+}
+
+.popup__title {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
 @media screen and (max-width: 524px) {
   .popup {
     padding-left: 19px;
     padding-right: 19px;
     box-sizing: border-box;
+  }
+  .popup__container {
+    width: 100%;
+    gap: 67px;
+    padding: 25px 22px;
+  }
+  .popup__close-button {
+    background-size: 20px 20px;
+    top: -49px;
+    right: 7px;
   }
 }
