@@ -31,3 +31,13 @@ function formHandler(event) {
 editProfileButton.addEventListener("click", toggleForm);
 closeButton.addEventListener("click", toggleForm);
 form.addEventListener("submit", formHandler);
+
+let likesButtons = document.querySelectorAll(".card__like-button");
+
+for (let i = 0; i < likesButtons.length; i++) {
+  let likeButton = likesButtons[i];
+  function toggleLike() {
+    likeButton.classList.toggle("card__like-button_active");
+  }
+  likeButton.addEventListener("click", toggleLike);
+}
