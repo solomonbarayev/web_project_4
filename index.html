@@ -117,41 +117,35 @@
           </li>
         </ul>
       </section>
-      <section class="popup">
-        <div class="popup__container">
-          <a class="popup__close-button">
-            <img
-              src="./images/icons/close_icon.svg"
-              alt="close icon"
-              class="popup__close-icon"
-            />
-          </a>
-          <h2 class="popup__title">Edit profile</h2>
-          <form action="submit" class="form popup__form">
-            <fieldset class="form__fieldset">
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                class="form__input"
-              />
-              <input
-                type="text"
-                name="title"
-                placeholder="About me"
-                class="form__input"
-              />
-            </fieldset>
-            <fieldset class="form__fieldset">
-              <button class="form__button" type="submit">Save</button>
-            </fieldset>
-          </form>
-        </div>
-      </section>
     </main>
     <footer class="footer section section_padded">
       <p class="footer__copyrights">© 2021 Around The U.S.</p>
     </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <h2 class="popup__title">Edit profile</h2>
+        <form action="submit" class="form popup__form">
+          <fieldset class="form__fieldset">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              class="form__input"
+            />
+            <input
+              type="text"
+              name="title"
+              placeholder="About me"
+              class="form__input"
+            />
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <button class="form__button" type="submit">Save</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
