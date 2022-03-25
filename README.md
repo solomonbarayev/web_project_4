@@ -11,7 +11,7 @@ This is a project that showcases a trip to the US by a particular traveller. All
 ### Project features
 
 - Javascript DOM manipulation
-- Nested BEM file structure
+- Flat BEM file structure
 - Responsive and Adaptive development
 - Grid Layout
 - Flexbox Layout
