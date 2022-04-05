@@ -112,11 +112,6 @@
     line-height: 1.2;
   }
 
-  .profile__edit-button {
-    padding: 5px;
-    max-width: 20px;
-    max-height: 20px;
-  }
   .profile__title {
     font-size: 14px;
     line-height: 1.21;
