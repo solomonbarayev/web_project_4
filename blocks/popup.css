@@ -96,13 +96,11 @@
     top: -49px;
     right: 7px;
   }
-
   .popup__container_type_image-preview {
     padding: 0;
     gap: 10px;
     max-width: 75vw;
   }
-
   .popup__close-button_type_image-prev {
     right: -38px;
     top: -38px;
