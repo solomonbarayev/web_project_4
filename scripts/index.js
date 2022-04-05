@@ -68,7 +68,7 @@ function createCard(data) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const cardImg = cardElement.querySelector(".card__image");
   cardImg.src = data.link;
-  cardImg.alt = data.name;
+  cardImg.alt = `A beautiful place in ${data.name}`;
   const deleteButton = cardElement.querySelector(".card__delete-button");
   //eventListeners
   cardImg.addEventListener("click", () => previewImage(data));
@@ -121,6 +121,7 @@ function previewImage(card) {
   const popupImage = imgPrevModal.querySelector(".popup__image");
   const popupCaption = imgPrevModal.querySelector(".popup__caption");
   popupImage.src = card.link;
+  popupImage.alt = `A beautiful place in ${card.name}`;
   popupCaption.textContent = card.name;
   openModal(imgPrevModal);
 }
