@@ -5,11 +5,10 @@ const cardList = cards.querySelector(".cards__list");
 ///Forms and their elements
 const profileForm = document.querySelector(".popup__form_type_profile");
 const profile = document.querySelector(".profile");
-
 const profileName = profile.querySelector(".profile__name");
 const profileTitle = profile.querySelector(".profile__title");
-const inputName = profileForm.querySelector(".form__input[name='name']");
-const inputTitle = profileForm.querySelector(".form__input[name='title']");
+const inputName = profileForm.querySelector(".form__input_type_profile-name");
+const inputTitle = profileForm.querySelector(".form__input_type_profile-title");
 
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const addPlaceButton = profile.querySelector(".profile__add-button");
@@ -19,11 +18,9 @@ const placeName = placeForm.querySelector(".form__input_type_place-name");
 const placeURL = placeForm.querySelector(".form__input_type_place-url");
 
 //Modals and their elements
-const popup = document.querySelector(".popup");
-const profileModal = document.querySelector(".popup__type_edit-profile");
-const addPlaceModal = document.querySelector(".popup__type_add-place");
-const imgPrevModal = document.querySelector(".popup__type_image-prev");
-
+const profileModal = document.querySelector(".popup_type_edit-profile");
+const addPlaceModal = document.querySelector(".popup_type_add-place");
+const imgPrevModal = document.querySelector(".popup_type_image-prev");
 const profileCloseButton = profileModal.querySelector(
   ".popup__close-button_type_profile"
 );
@@ -62,6 +59,7 @@ const initialCards = [
   },
 ];
 
+//Function that creates a card with all of its components
 function createCard(data) {
   const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -115,6 +113,8 @@ function addCard(event) {
   event.preventDefault();
   renderCard({ name: placeName.value, link: placeURL.value }, cardList);
   closeModal(addPlaceModal);
+  placeName.value = "";
+  placeURL.value = "";
 }
 
 function previewImage(card) {
