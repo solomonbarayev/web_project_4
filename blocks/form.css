@@ -11,7 +11,7 @@
 .form__fieldset {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  /*gap: 16px;*/
   border: none;
   padding: 0;
 }
@@ -28,6 +28,28 @@
   color: #000;
 }
 
+.form__input:focus {
+  outline: none;
+}
+
+.form__input-error {
+  font-size: 12px;
+  padding-top: 4px;
+  min-height: 16px;
+  color: #ff0000;
+}
+
+.form__input_type_error {
+  border-bottom: solid #ff0000 1px;
+}
+
+.form__input-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
 .form__button {
   background: #000;
   border: none;
@@ -41,6 +63,14 @@
 
 .form__button:hover {
   background: rgba(0, 0, 0, 0.8);
+}
+
+.form__button_disabled,
+.form__button_disabled:hover {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+  cursor: default;
 }
 
 @media screen and (max-width: 524px) {
