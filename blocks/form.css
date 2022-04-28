@@ -3,7 +3,7 @@
   width: 358px;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 32px;
   font-size: 14px;
   line-height: 1.21;
 }
@@ -11,7 +11,6 @@
 .form__fieldset {
   display: flex;
   flex-direction: column;
-  /*gap: 16px;*/
   border: none;
   padding: 0;
 }
@@ -55,6 +54,7 @@
   border: none;
   color: #fff;
   font-size: 18px;
+  border-radius: 2px;
   line-height: 1.22;
   padding: 18.49px;
   cursor: pointer;

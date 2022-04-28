@@ -1,5 +1,5 @@
 //////////////////////////////////
-//////// Form Validations ////////
+//////// Form Validation ////////
 //////////////////////////////////
 
 const showInputError = (formElement, inputElement, configurations) => {
@@ -53,6 +53,8 @@ const setEventListeners = (formElement, configurations) => {
     formElement.querySelectorAll(configurations.inputSelector)
   );
   const button = formElement.querySelector(configurations.submitButtonSelector);
+
+  toggleButton(inputList, button, configurations);
   //add event listeners for each input field
   inputList.forEach((input) => {
     input.addEventListener("input", () => {
@@ -73,11 +75,13 @@ const enableValidation = (configurations) => {
   });
 };
 
-enableValidation({
+const configurations = {
   formSelector: ".form",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button",
   inactiveButtonClass: "form__button_disabled",
   inputErrorClass: "form__input_type_error",
   errorClass: "form__error_visible",
-});
+};
+
+enableValidation(configurations);

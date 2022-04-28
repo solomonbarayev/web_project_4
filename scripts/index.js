@@ -135,8 +135,8 @@ function fillProfileFormFields() {
 }
 
 function closeOnEscape(e) {
+  const currentPopup = document.querySelector(".popup_opened");
   if (e.key === "Escape") {
-    const currentPopup = document.querySelector(".popup_opened");
     closeModal(currentPopup);
   }
 }
@@ -154,9 +154,12 @@ function clickOutsideToClose(e) {
 editProfileButton.addEventListener("click", () => {
   fillProfileFormFields();
   openModal(profileModal);
+  disableButton(button, configurations);
 });
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
-addPlaceButton.addEventListener("click", () => openModal(addPlaceModal));
+addPlaceButton.addEventListener("click", () => {
+  openModal(addPlaceModal);
+});
 placeCloseButton.addEventListener("click", () => closeModal(addPlaceModal));
 imgPrevCloseButton.addEventListener("click", () => closeModal(imgPrevModal));
 profileForm.addEventListener("submit", handleProfileFormSubmit);
