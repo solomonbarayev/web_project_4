@@ -2,25 +2,25 @@
 //////// Form Validations ////////
 //////////////////////////////////
 
-const showInputError = (formElement, input, configurations) => {
-  const errorElement = formElement.querySelector(`.${input.id}-error`);
-  errorElement.textContent = input.validationMessage;
+const showInputError = (formElement, inputElement, configurations) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(configurations.errorClass);
-  input.classList.add(configurations.inputErrorClass);
+  inputElement.classList.add(configurations.inputErrorClass);
 };
 
-const hideInputError = (formElement, input, configurations) => {
-  const errorElement = formElement.querySelector(`.${input.id}-error`);
+const hideInputError = (formElement, inputElement, configurations) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = "";
   errorElement.classList.remove(configurations.errorClass);
-  input.classList.remove(configurations.inputErrorClass);
+  inputElement.classList.remove(configurations.inputErrorClass);
 };
 
-const checkInputValidity = (formElement, input, configurations) => {
-  if (!input.validity.valid) {
-    showInputError(formElement, input, configurations);
+const checkInputValidity = (formElement, inputElement, configurations) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, configurations);
   } else {
-    hideInputError(formElement, input, configurations);
+    hideInputError(formElement, inputElement, configurations);
   }
 };
 
@@ -30,13 +30,21 @@ const hasInvalidInputs = (inputList) => {
   });
 };
 
+const enableButton = (button, configurations) => {
+  button.disabled = true;
+  button.classList.add(configurations.inactiveButtonClass);
+};
+
+const disableButton = (button, configurations) => {
+  button.disabled = false;
+  button.classList.remove(configurations.inactiveButtonClass);
+};
+
 const toggleButton = (inputList, button, configurations) => {
   if (hasInvalidInputs(inputList)) {
-    button.disabled = true;
-    button.classList.add(configurations.inactiveButtonClass);
+    enableButton(button, configurations);
   } else {
-    button.disabled = false;
-    button.classList.remove(configurations.inactiveButtonClass);
+    disableButton(button, configurations);
   }
 };
 
