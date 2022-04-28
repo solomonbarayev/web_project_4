@@ -92,21 +92,25 @@ initialCards.forEach((card) => renderCard(card, cardList));
 
 function openModal(modal) {
   modal.classList.add("popup_opened");
+  document.addEventListener("keydown", closeOnEscape);
+  document.addEventListener("mousedown", clickOutsideToClose);
 }
 
 function closeModal(modal) {
   modal.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeOnEscape);
+  document.removeEventListener("mousedown", clickOutsideToClose);
 }
 
-function handleProfileFormSubmit(event) {
-  event.preventDefault();
+function handleProfileFormSubmit(e) {
+  e.preventDefault();
   profileName.textContent = inputName.value;
   profileTitle.textContent = inputTitle.value;
   closeModal(profileModal);
 }
 
-function addCard(event) {
-  event.preventDefault();
+function addCard(e) {
+  e.preventDefault();
   renderCard({ name: placeName.value, link: placeURL.value }, cardList);
   closeModal(addPlaceModal);
   placeForm.reset();
@@ -130,21 +134,30 @@ function fillProfileFormFields() {
   inputTitle.value = profileTitle.textContent;
 }
 
-///////////////
-//Event Listeners
-///////////////
+function closeOnEscape(e) {
+  if (e.key === "Escape") {
+    const currentPopup = document.querySelector(".popup_opened");
+    closeModal(currentPopup);
+  }
+}
+
+function clickOutsideToClose(e) {
+  const currentPopup = document.querySelector(".popup_opened");
+  if (e.target.classList.contains("popup")) {
+    closeModal(currentPopup);
+  }
+}
+
+/////////////////////
+//////Event Listeners
+/////////////////////
 editProfileButton.addEventListener("click", () => {
   fillProfileFormFields();
   openModal(profileModal);
 });
-
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
-
 addPlaceButton.addEventListener("click", () => openModal(addPlaceModal));
 placeCloseButton.addEventListener("click", () => closeModal(addPlaceModal));
-
 imgPrevCloseButton.addEventListener("click", () => closeModal(imgPrevModal));
-
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-
 placeForm.addEventListener("submit", addCard);

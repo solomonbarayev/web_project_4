@@ -4,18 +4,14 @@
 
 const showInputError = (formElement, input, configurations) => {
   const errorElement = formElement.querySelector(`.${input.id}-error`);
-  //add error message
   errorElement.textContent = input.validationMessage;
-  //add error class
   errorElement.classList.add(configurations.errorClass);
   input.classList.add(configurations.inputErrorClass);
 };
 
 const hideInputError = (formElement, input, configurations) => {
   const errorElement = formElement.querySelector(`.${input.id}-error`);
-  //remove error message
   errorElement.textContent = "";
-  //remove error class
   errorElement.classList.remove(configurations.errorClass);
   input.classList.remove(configurations.inputErrorClass);
 };
@@ -49,16 +45,9 @@ const setEventListeners = (formElement, configurations) => {
     formElement.querySelectorAll(configurations.inputSelector)
   );
   const button = formElement.querySelector(configurations.submitButtonSelector);
-
-  toggleButton(inputList, button, configurations);
-
   //add event listeners for each input field
   inputList.forEach((input) => {
-    //checking if the inputs that are auto populated are being red as populated
-    console.log(input.value.length);
-
     input.addEventListener("input", () => {
-      //check the validity
       checkInputValidity(formElement, input, configurations);
       toggleButton(inputList, button, configurations);
     });
@@ -70,11 +59,8 @@ const enableValidation = (configurations) => {
     document.querySelectorAll(configurations.formSelector)
   );
 
-  //prevent Default behavior for every form
   formList.forEach((formElement) => {
-    formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-    });
+    formElement.addEventListener("submit", (e) => e.preventDefault());
     setEventListeners(formElement, configurations);
   });
 };
