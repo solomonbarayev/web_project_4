@@ -11,6 +11,7 @@ This is a project that showcases a trip to the US by a particular traveler. All 
 ### Project features
 
 - Javascript form validation
+- Javascript Import/Export (modules)
 - Javascript DOM manipulation
 - Flat BEM file structure
 - Responsive and Adaptive development
