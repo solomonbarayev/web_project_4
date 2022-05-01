@@ -1,3 +1,5 @@
+import { configurations, toggleButton, hideErrorsOnClose } from "./validate.js";
+
 /// List where the cards live
 const cards = document.querySelector(".cards");
 const cardList = cards.querySelector(".cards__list");
@@ -90,16 +92,28 @@ initialCards.forEach((card) => renderCard(card, cardList));
 //Event Handlers
 ///////////////
 
+function checkEditAndAddModals(modal) {
+  if (!modal.classList.contains("popup_type_image-prev")) {
+    const inputList = [...modal.querySelectorAll(configurations.inputSelector)];
+    const button = modal.querySelector(configurations.submitButtonSelector);
+    toggleButton(inputList, button, configurations);
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("popup_opened");
   document.addEventListener("keydown", closeOnEscape);
   document.addEventListener("mousedown", clickOutsideToClose);
+  //passing the toggleButton function here so inputs get checked after they are filled
+  checkEditAndAddModals(modal);
+  //resetFormErrors(configurations);
 }
 
 function closeModal(modal) {
   modal.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeOnEscape);
   document.removeEventListener("mousedown", clickOutsideToClose);
+  hideErrorsOnClose(modal);
 }
 
 function handleProfileFormSubmit(e) {
@@ -154,8 +168,8 @@ function clickOutsideToClose(e) {
 editProfileButton.addEventListener("click", () => {
   fillProfileFormFields();
   openModal(profileModal);
-  disableButton(button, configurations);
 });
+
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
 addPlaceButton.addEventListener("click", () => {
   openModal(addPlaceModal);

@@ -9,7 +9,7 @@ const showInputError = (formElement, inputElement, configurations) => {
   inputElement.classList.add(configurations.inputErrorClass);
 };
 
-const hideInputError = (formElement, inputElement, configurations) => {
+export const hideInputError = (formElement, inputElement, configurations) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = "";
   errorElement.classList.remove(configurations.errorClass);
@@ -40,7 +40,7 @@ const disableButton = (button, configurations) => {
   button.classList.remove(configurations.inactiveButtonClass);
 };
 
-const toggleButton = (inputList, button, configurations) => {
+export const toggleButton = (inputList, button, configurations) => {
   if (hasInvalidInputs(inputList)) {
     enableButton(button, configurations);
   } else {
@@ -75,7 +75,17 @@ const enableValidation = (configurations) => {
   });
 };
 
-const configurations = {
+export const hideErrorsOnClose = (modal) => {
+  const formElement = modal.querySelector(configurations.formSelector);
+  const inputList = [
+    ...formElement.querySelectorAll(configurations.inputSelector),
+  ];
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, configurations);
+  });
+};
+
+export const configurations = {
   formSelector: ".form",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button",
