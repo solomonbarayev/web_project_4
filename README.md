@@ -25,12 +25,10 @@ This is a project that showcases a trip to the US by a particular traveler. All 
 
 ## Plan on improving the project
 
-1. Using Import & Export to enable the usage of functions from one script file to another
+1. Adding the ability to submit the form to a server so information can be save somewhere rather than refresh on reload.
 
-2. Adding the ability to submit the form to a server so information can be save somewhere rather than refresh on reload.
+2. The ability to update profile picture.
 
-3. The ability to update profile picture.
-
-4. To learn how to make components with react so as not to repeat code for popups 3 times.
+3. To learn how to make components with react so as not to repeat code for popups 3 times.
 
 ## Developer: Solomon Barayev
