@@ -92,8 +92,12 @@ initialCards.forEach((card) => renderCard(card, cardList));
 //Event Handlers
 ///////////////
 
+function isNotPreviewModal(modal) {
+  return !modal.classList.contains("popup_type_image-prev") ? true : false;
+}
+
 function checkEditAndAddModals(modal) {
-  if (!modal.classList.contains("popup_type_image-prev")) {
+  if (isNotPreviewModal(modal)) {
     const inputList = [...modal.querySelectorAll(configurations.inputSelector)];
     const button = modal.querySelector(configurations.submitButtonSelector);
     toggleButton(inputList, button, configurations);
@@ -106,14 +110,13 @@ function openModal(modal) {
   document.addEventListener("mousedown", clickOutsideToClose);
   //passing the toggleButton function here so inputs get checked after they are filled
   checkEditAndAddModals(modal);
-  //resetFormErrors(configurations);
 }
 
 function closeModal(modal) {
   modal.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeOnEscape);
   document.removeEventListener("mousedown", clickOutsideToClose);
-  hideErrorsOnClose(modal);
+  isNotPreviewModal(modal) && hideErrorsOnClose(modal);
 }
 
 function handleProfileFormSubmit(e) {

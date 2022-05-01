@@ -5,7 +5,7 @@
 const showInputError = (formElement, inputElement, configurations) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = inputElement.validationMessage;
-  errorElement.classList.add(configurations.errorClass);
+  //errorElement.classList.add(configurations.errorClass);
   inputElement.classList.add(configurations.inputErrorClass);
 };
 
@@ -24,7 +24,7 @@ const checkInputValidity = (formElement, inputElement, configurations) => {
   }
 };
 
-const hasInvalidInputs = (inputList) => {
+const hasOnlyValidInputs = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
@@ -41,7 +41,7 @@ const disableButton = (button, configurations) => {
 };
 
 export const toggleButton = (inputList, button, configurations) => {
-  if (hasInvalidInputs(inputList)) {
+  if (hasOnlyValidInputs(inputList)) {
     enableButton(button, configurations);
   } else {
     disableButton(button, configurations);
