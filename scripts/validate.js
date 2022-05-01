@@ -5,7 +5,7 @@
 const showInputError = (formElement, inputElement, configurations) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = inputElement.validationMessage;
-  //errorElement.classList.add(configurations.errorClass);
+  errorElement.classList.add(configurations.errorClass);
   inputElement.classList.add(configurations.inputErrorClass);
 };
 
