@@ -30,7 +30,7 @@ const hasOnlyValidInputs = (inputList) => {
   });
 };
 
-const enableButton = (button, configurations) => {
+export const enableButton = (button, configurations) => {
   button.disabled = true;
   button.classList.add(configurations.inactiveButtonClass);
 };
@@ -75,7 +75,7 @@ const enableValidation = (configurations) => {
   });
 };
 
-export const hideErrorsOnClose = (modal) => {
+export const hideErrorsOnOpen = (modal) => {
   const formElement = modal.querySelector(configurations.formSelector);
   const inputList = [
     ...formElement.querySelectorAll(configurations.inputSelector),

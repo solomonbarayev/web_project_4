@@ -1,4 +1,9 @@
-import { configurations, toggleButton, hideErrorsOnClose } from "./validate.js";
+import {
+  configurations,
+  toggleButton,
+  hideErrorsOnOpen,
+  enableButton,
+} from "./validate.js";
 
 /// List where the cards live
 const cards = document.querySelector(".cards");
@@ -92,31 +97,26 @@ initialCards.forEach((card) => renderCard(card, cardList));
 //Event Handlers
 ///////////////
 
-function isNotPreviewModal(modal) {
-  return !modal.classList.contains("popup_type_image-prev") ? true : false;
-}
+// function isNotPreviewModal(modal) {
+//   return !modal.classList.contains("popup_type_image-prev");
+// }
 
-function checkEditAndAddModals(modal) {
-  if (isNotPreviewModal(modal)) {
-    const inputList = [...modal.querySelectorAll(configurations.inputSelector)];
-    const button = modal.querySelector(configurations.submitButtonSelector);
-    toggleButton(inputList, button, configurations);
-  }
+function togglePopupButton(modal) {
+  const inputList = [...modal.querySelectorAll(configurations.inputSelector)];
+  const button = modal.querySelector(configurations.submitButtonSelector);
+  toggleButton(inputList, button, configurations);
 }
 
 function openModal(modal) {
   modal.classList.add("popup_opened");
   document.addEventListener("keydown", closeOnEscape);
   document.addEventListener("mousedown", clickOutsideToClose);
-  //passing the toggleButton function here so inputs get checked after they are filled
-  checkEditAndAddModals(modal);
 }
 
 function closeModal(modal) {
   modal.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeOnEscape);
   document.removeEventListener("mousedown", clickOutsideToClose);
-  isNotPreviewModal(modal) && hideErrorsOnClose(modal);
 }
 
 function handleProfileFormSubmit(e) {
@@ -130,7 +130,16 @@ function addCard(e) {
   e.preventDefault();
   renderCard({ name: placeName.value, link: placeURL.value }, cardList);
   closeModal(addPlaceModal);
+  //placeForm.reset();
+  const placeFormButton = placeForm.querySelector(
+    configurations.submitButtonSelector
+  );
   placeForm.reset();
+  resetFormErrors(placeFormButton, configurations);
+}
+
+function resetFormErrors(formSubmitButton, configurations) {
+  enableButton(formSubmitButton, configurations);
 }
 
 function previewImage(card) {
@@ -170,11 +179,14 @@ function clickOutsideToClose(e) {
 /////////////////////
 editProfileButton.addEventListener("click", () => {
   fillProfileFormFields();
+  hideErrorsOnOpen(profileModal);
+  togglePopupButton(profileModal);
   openModal(profileModal);
 });
 
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
 addPlaceButton.addEventListener("click", () => {
+  hideErrorsOnOpen(addPlaceModal);
   openModal(addPlaceModal);
 });
 placeCloseButton.addEventListener("click", () => closeModal(addPlaceModal));
