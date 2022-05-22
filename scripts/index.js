@@ -1,9 +1,6 @@
-import {
-  configurations,
-  toggleButton,
-  hideErrorsOnOpen,
-  enableButton,
-} from "./validate.js";
+import { openModal, closeModal } from "./utils.js";
+import { FormValidator, configurations } from "./FormValidator.js";
+import { Card } from "./Card.js";
 
 /// List where the cards live
 const cards = document.querySelector(".cards");
@@ -66,58 +63,27 @@ const initialCards = [
   },
 ];
 
-//Function that creates a card with all of its components
-function createCard(data) {
-  const cardTemplate = document.querySelector("#card-template").content;
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  const cardTitleElement = cardElement.querySelector(".card__title");
-  cardTitleElement.textContent = data.name;
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const cardImage = cardElement.querySelector(".card__image");
-  cardImage.src = data.link;
-  cardImage.alt = `A beautiful place in ${data.name}`;
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-  //eventListeners
-  cardImage.addEventListener("click", () => previewImage(data));
-  deleteButton.addEventListener("click", () => cardElement.remove());
-  likeButton.addEventListener("click", () =>
-    toggleClass(likeButton, "card__like-button_active")
-  );
-  return cardElement;
-}
+const cardTemplateSelector = "#card-template";
 
+///////////////////////
+/*     Validation    */
+///////////////////////
+const profileFormValidator = new FormValidator(configurations, profileForm);
+const addFormValidator = new FormValidator(configurations, placeForm);
+
+///////////////////////
+/*   Card Creation   */
+///////////////////////
 function renderCard(card, list) {
-  list.prepend(createCard(card));
+  const cardToRender = new Card(card, cardTemplateSelector).generateCard();
+  list.prepend(cardToRender);
 }
 
-//creating the initial set of cards with the renderCard function
 initialCards.forEach((card) => renderCard(card, cardList));
 
-///////////////
-//Event Handlers
-///////////////
-
-// function isNotPreviewModal(modal) {
-//   return !modal.classList.contains("popup_type_image-prev");
-// }
-
-function togglePopupButton(modal) {
-  const inputList = [...modal.querySelectorAll(configurations.inputSelector)];
-  const button = modal.querySelector(configurations.submitButtonSelector);
-  toggleButton(inputList, button, configurations);
-}
-
-function openModal(modal) {
-  modal.classList.add("popup_opened");
-  document.addEventListener("keydown", closeOnEscape);
-  document.addEventListener("mousedown", clickOutsideToClose);
-}
-
-function closeModal(modal) {
-  modal.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeOnEscape);
-  document.removeEventListener("mousedown", clickOutsideToClose);
-}
+/////////////////////////
+//*   Event Handlers   */
+/////////////////////////
 
 function handleProfileFormSubmit(e) {
   e.preventDefault();
@@ -130,29 +96,8 @@ function addCard(e) {
   e.preventDefault();
   renderCard({ name: placeName.value, link: placeURL.value }, cardList);
   closeModal(addPlaceModal);
-  //placeForm.reset();
-  const placeFormButton = placeForm.querySelector(
-    configurations.submitButtonSelector
-  );
   placeForm.reset();
-  resetFormErrors(placeFormButton, configurations);
-}
-
-function resetFormErrors(formSubmitButton, configurations) {
-  enableButton(formSubmitButton, configurations);
-}
-
-function previewImage(card) {
-  const popupImage = imgPrevModal.querySelector(".popup__image");
-  const popupCaption = imgPrevModal.querySelector(".popup__caption");
-  popupImage.src = card.link;
-  popupImage.alt = `A beautiful place in ${card.name}`;
-  popupCaption.textContent = card.name;
-  openModal(imgPrevModal);
-}
-
-function toggleClass(component, cl) {
-  component.classList.toggle(cl);
+  addFormValidator.resetFormButton();
 }
 
 function fillProfileFormFields() {
@@ -160,33 +105,19 @@ function fillProfileFormFields() {
   inputTitle.value = profileTitle.textContent;
 }
 
-function closeOnEscape(e) {
-  const currentPopup = document.querySelector(".popup_opened");
-  if (e.key === "Escape") {
-    closeModal(currentPopup);
-  }
-}
-
-function clickOutsideToClose(e) {
-  const currentPopup = document.querySelector(".popup_opened");
-  if (e.target.classList.contains("popup")) {
-    closeModal(currentPopup);
-  }
-}
-
 /////////////////////
 //////Event Listeners
 /////////////////////
 editProfileButton.addEventListener("click", () => {
   fillProfileFormFields();
-  hideErrorsOnOpen(profileModal);
-  togglePopupButton(profileModal);
+  profileFormValidator.enableValidation();
+  profileFormValidator.hideErrorsOnOpen();
   openModal(profileModal);
 });
 
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
 addPlaceButton.addEventListener("click", () => {
-  hideErrorsOnOpen(addPlaceModal);
+  addFormValidator.enableValidation();
   openModal(addPlaceModal);
 });
 placeCloseButton.addEventListener("click", () => closeModal(addPlaceModal));
