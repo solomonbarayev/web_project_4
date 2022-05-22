@@ -1,5 +1,5 @@
 import { openModal, closeModal } from "./utils.js";
-import { FormValidator, configurations } from "./FormValidator.js";
+import { FormValidator } from "./FormValidator.js";
 import { Card } from "./Card.js";
 
 /// List where the cards live
@@ -68,8 +68,19 @@ const cardTemplateSelector = "#card-template";
 ///////////////////////
 /*     Validation    */
 ///////////////////////
-const profileFormValidator = new FormValidator(configurations, profileForm);
-const addFormValidator = new FormValidator(configurations, placeForm);
+const ValidationConfigurations = {
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__error_visible",
+};
+
+const profileFormValidator = new FormValidator(
+  ValidationConfigurations,
+  profileForm
+);
+const addFormValidator = new FormValidator(ValidationConfigurations, placeForm);
 
 ///////////////////////
 /*   Card Creation   */
