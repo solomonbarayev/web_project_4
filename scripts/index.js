@@ -1,30 +1,23 @@
-import { openModal, closeModal } from "./utils.js";
+import {
+  openModal,
+  closeModal,
+  handleProfileFormSubmit,
+  profile,
+  profileModal,
+  profileForm,
+  placeForm,
+  addCard,
+  renderCard,
+  fillProfileFormFields,
+  addPlaceModal,
+  imgPrevModal,
+  cardList,
+} from "./utils.js";
 import { FormValidator } from "./FormValidator.js";
-import { Card } from "./Card.js";
-
-/// List where the cards live
-const cards = document.querySelector(".cards");
-const cardList = cards.querySelector(".cards__list");
-
-///Forms and their elements
-const profileForm = document.querySelector(".popup__form_type_profile");
-const profile = document.querySelector(".profile");
-const profileName = profile.querySelector(".profile__name");
-const profileTitle = profile.querySelector(".profile__title");
-const inputName = profileForm.querySelector(".form__input_type_profile-name");
-const inputTitle = profileForm.querySelector(".form__input_type_profile-title");
 
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const addPlaceButton = profile.querySelector(".profile__add-button");
 
-const placeForm = document.querySelector(".popup__form_type_add-place");
-const placeName = placeForm.querySelector(".form__input_type_place-name");
-const placeURL = placeForm.querySelector(".form__input_type_place-url");
-
-//Modals and their elements
-const profileModal = document.querySelector(".popup_type_edit-profile");
-const addPlaceModal = document.querySelector(".popup_type_add-place");
-const imgPrevModal = document.querySelector(".popup_type_image-prev");
 const profileCloseButton = profileModal.querySelector(
   ".popup__close-button_type_profile"
 );
@@ -63,10 +56,8 @@ const initialCards = [
   },
 ];
 
-const cardTemplateSelector = "#card-template";
-
 ///////////////////////
-/*     Validation    */
+/*     Form Validation    */
 ///////////////////////
 const validationConfigurations = {
   inputSelector: ".form__input",
@@ -82,46 +73,18 @@ const profileFormValidator = new FormValidator(
 );
 const addFormValidator = new FormValidator(validationConfigurations, placeForm);
 
-///////////////////////
-/*   Card Creation   */
-///////////////////////
-function renderCard(card, list) {
-  const cardToRender = new Card(card, cardTemplateSelector).generateCard();
-  list.prepend(cardToRender);
-}
-
-initialCards.forEach((card) => renderCard(card, cardList));
-
-/////////////////////////
-//*   Event Handlers   */
-/////////////////////////
-
-function handleProfileFormSubmit(e) {
-  e.preventDefault();
-  profileName.textContent = inputName.value;
-  profileTitle.textContent = inputTitle.value;
-  closeModal(profileModal);
-}
-
-function addCard(e) {
-  e.preventDefault();
-  renderCard({ name: placeName.value, link: placeURL.value }, cardList);
-  closeModal(addPlaceModal);
-  placeForm.reset();
-  addFormValidator.resetFormButton();
-}
-
-function fillProfileFormFields() {
-  inputName.value = profileName.textContent;
-  inputTitle.value = profileTitle.textContent;
-}
-
 profileFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-/////////////////////
-//////Event Listeners
-/////////////////////
+///////////////////////
+/*   Initial Card Creation   */
+///////////////////////
+
+initialCards.forEach((card) => renderCard(card, cardList));
+
+//////////////////
+// Event Listeners
+//////////////////
 editProfileButton.addEventListener("click", () => {
   fillProfileFormFields();
   profileFormValidator.enableButton();
