@@ -1,8 +1,4 @@
-import { openModal } from "./utils.js";
-
-const imageModalSelector = document.querySelector(".popup_type_image-prev");
-const popupImage = imageModalSelector.querySelector(".popup__image");
-const popupCaption = imageModalSelector.querySelector(".popup__caption");
+import { handlePreviewImage } from "./utils.js";
 
 export class Card {
   constructor(data, selector) {
@@ -19,21 +15,22 @@ export class Card {
     return cardElement;
   }
 
-  _handleLikeButton() {
-    this._likeButton.classList.toggle("card__like-button_active");
-  }
-
-  _handlePreviewImage() {
-    popupImage.src = this._link;
-    popupImage.alt = `A beautiful sight in ${this._text}`;
-    popupCaption.textContent = this._text;
-    openModal(imageModalSelector);
+  _handleLikeButton(evt) {
+    evt.target.classList.toggle("card__like-button_active");
   }
 
   _setEventListeners() {
-    this._likeButton.addEventListener("click", () => this._handleLikeButton());
-    this._deleteButton.addEventListener("click", () => this._element.remove());
-    this._image.addEventListener("click", () => this._handlePreviewImage());
+    this._element.addEventListener("click", (evt) => {
+      if (evt.target === this._likeButton) {
+        this._handleLikeButton(evt);
+      }
+      if (evt.target === this._deleteButton) {
+        evt.currentTarget.remove();
+      }
+      if (evt.target === this._image) {
+        handlePreviewImage(this._link, this._text);
+      }
+    });
   }
 
   generateCard() {

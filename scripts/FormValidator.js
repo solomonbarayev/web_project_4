@@ -41,7 +41,7 @@ export class FormValidator {
     this._button.classList.add(this._inactiveButtonClass);
   }
 
-  _enableButton() {
+  enableButton() {
     this._button.disabled = false;
     this._button.classList.remove(this._inactiveButtonClass);
   }
@@ -50,7 +50,7 @@ export class FormValidator {
     if (this._hasInvalidInputs()) {
       this._disableButton();
     } else {
-      this._enableButton();
+      this.enableButton();
     }
   }
 

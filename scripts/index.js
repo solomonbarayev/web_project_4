@@ -68,7 +68,7 @@ const cardTemplateSelector = "#card-template";
 ///////////////////////
 /*     Validation    */
 ///////////////////////
-const ValidationConfigurations = {
+const validationConfigurations = {
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button",
   inactiveButtonClass: "form__button_disabled",
@@ -77,10 +77,10 @@ const ValidationConfigurations = {
 };
 
 const profileFormValidator = new FormValidator(
-  ValidationConfigurations,
+  validationConfigurations,
   profileForm
 );
-const addFormValidator = new FormValidator(ValidationConfigurations, placeForm);
+const addFormValidator = new FormValidator(validationConfigurations, placeForm);
 
 ///////////////////////
 /*   Card Creation   */
@@ -116,19 +116,21 @@ function fillProfileFormFields() {
   inputTitle.value = profileTitle.textContent;
 }
 
+profileFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
 /////////////////////
 //////Event Listeners
 /////////////////////
 editProfileButton.addEventListener("click", () => {
   fillProfileFormFields();
-  profileFormValidator.enableValidation();
+  profileFormValidator.enableButton();
   profileFormValidator.hideErrorsOnOpen();
   openModal(profileModal);
 });
 
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
 addPlaceButton.addEventListener("click", () => {
-  addFormValidator.enableValidation();
   openModal(addPlaceModal);
 });
 placeCloseButton.addEventListener("click", () => closeModal(addPlaceModal));

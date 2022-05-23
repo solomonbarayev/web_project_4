@@ -23,3 +23,18 @@ export function closeModal(modal) {
   document.removeEventListener("keydown", closeOnEscape);
   document.removeEventListener("mousedown", clickOutsideToClose);
 }
+
+//////////////////////////////////////////////
+// Preview Image Popup Variables and Handler//
+//////////////////////////////////////////////
+
+const imageModalSelector = document.querySelector(".popup_type_image-prev");
+const popupImage = imageModalSelector.querySelector(".popup__image");
+const popupCaption = imageModalSelector.querySelector(".popup__caption");
+
+export function handlePreviewImage(thisLink, thisName) {
+  popupImage.src = thisLink;
+  popupImage.alt = `A beautiful sight in ${thisName}`;
+  popupCaption.textContent = thisName;
+  openModal(imageModalSelector);
+}
