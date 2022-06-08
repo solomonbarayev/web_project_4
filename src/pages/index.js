@@ -1,3 +1,7 @@
+import "./index.css";
+
+import { Popup } from "../components/Popup";
+
 import {
   openModal,
   closeModal,
@@ -12,8 +16,8 @@ import {
   addPlaceModal,
   imgPrevModal,
   cardList,
-} from "./utils.js";
-import { FormValidator } from "./FormValidator.js";
+} from "../utils/utils.js";
+import { FormValidator } from "../components/FormValidator.js";
 
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const addPlaceButton = profile.querySelector(".profile__add-button");
@@ -89,7 +93,8 @@ editProfileButton.addEventListener("click", () => {
   fillProfileFormFields();
   profileFormValidator.enableButton();
   profileFormValidator.hideErrorsOnOpen();
-  openModal(profileModal);
+  //openModal(profileModal);
+  new Popup(".popup_type_edit-profile").open();
 });
 
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));

@@ -1,4 +1,5 @@
-import { handlePreviewImage } from "./utils.js";
+//import { handlePreviewImage } from "../utils/utils.js";
+import { PopupWithImage } from "./PopupWithImage";
 
 export class Card {
   constructor(data, selector) {
@@ -28,7 +29,11 @@ export class Card {
         evt.currentTarget.remove();
       }
       if (evt.target === this._image) {
-        handlePreviewImage(this._link, this._text);
+        //handlePreviewImage(this._link, this._text);
+        new PopupWithImage(".popup_type_image-prev").open(
+          this._link,
+          this._text
+        );
       }
     });
   }
