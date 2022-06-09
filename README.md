@@ -1,4 +1,4 @@
-# Project 6: Around The U.S.
+# Project 8: Around The U.S.
 
 ### Overview
 
@@ -10,8 +10,8 @@ This is a project that showcases a trip to the US by a particular traveler. All 
 
 ### Project features
 
-- Javascript form validation
-- Javascript Import/Export (modules)
+- Javascript ES6 Classes
+- Webpack, Postcss, Babel
 - Javascript DOM manipulation
 - Flat BEM file structure
 - Responsive and Adaptive development
@@ -23,13 +23,5 @@ This is a project that showcases a trip to the US by a particular traveler. All 
 # Github Pages Link:
 
 - [Link to the github pages link](https://solomonbarayev.github.io/web_project_4/)
-
-## Plan on improving the project
-
-1. Adding the ability to submit the form to a server so information can be save somewhere rather than refresh on reload.
-
-2. The ability to update profile picture.
-
-3. To learn how to make components with react so as not to repeat code for popups 3 times.
 
 ## Developer: Solomon Barayev
