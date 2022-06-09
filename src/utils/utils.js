@@ -1,13 +1,18 @@
 import { Card } from "../components/Card.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
 
 //  **** DECLARING VARIABLES  **** //
 
 export const profileForm = document.querySelector(".popup__form_type_profile");
 export const profile = document.querySelector(".profile");
-const profileName = profile.querySelector(".profile__name");
-const profileTitle = profile.querySelector(".profile__title");
-const inputName = profileForm.querySelector(".form__input_type_profile-name");
-const inputTitle = profileForm.querySelector(".form__input_type_profile-title");
+export const profileName = profile.querySelector(".profile__name");
+export const profileTitle = profile.querySelector(".profile__title");
+export const inputName = profileForm.querySelector(
+  ".form__input_type_profile-name"
+);
+export const inputTitle = profileForm.querySelector(
+  ".form__input_type_profile-title"
+);
 export const profileModal = document.querySelector(".popup_type_edit-profile");
 export const placeForm = document.querySelector(".popup__form_type_add-place");
 const placeName = placeForm.querySelector(".form__input_type_place-name");
@@ -63,8 +68,13 @@ export function handleProfileFormSubmit(e) {
   closeModal(profileModal);
 }
 
+const imageModal = new PopupWithImage(".popup_type_image-prev");
+imageModal.setEventListeners();
+
 export function renderCard(card, list) {
-  const cardToRender = new Card(card, cardTemplateSelector).generateCard();
+  const cardToRender = new Card(card, cardTemplateSelector, () => {
+    imageModal.open(card.link, card.name);
+  }).generateCard();
   list.prepend(cardToRender);
 }
 

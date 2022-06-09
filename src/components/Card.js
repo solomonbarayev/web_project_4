@@ -2,10 +2,11 @@
 import { PopupWithImage } from "./PopupWithImage";
 
 export class Card {
-  constructor(data, selector) {
+  constructor(data, selector, handleCardClick) {
     this._text = data.name;
     this._link = data.link;
     this._selector = selector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getCloneFromTemplate() {
@@ -30,10 +31,11 @@ export class Card {
       }
       if (evt.target === this._image) {
         //handlePreviewImage(this._link, this._text);
-        new PopupWithImage(".popup_type_image-prev").open(
-          this._link,
-          this._text
-        );
+        // new PopupWithImage(".popup_type_image-prev").open(
+        //   this._link,
+        //   this._text
+        // );
+        this._handleCardClick(evt);
       }
     });
   }

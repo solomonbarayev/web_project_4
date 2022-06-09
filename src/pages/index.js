@@ -1,6 +1,6 @@
 import "./index.css";
 
-import { Popup } from "../components/Popup";
+import { PopupWithForm } from "../components/PopupWithForm";
 
 import {
   openModal,
@@ -9,6 +9,10 @@ import {
   profile,
   profileModal,
   profileForm,
+  profileName,
+  inputName,
+  inputTitle,
+  profileTitle,
   placeForm,
   addCard,
   renderCard,
@@ -18,6 +22,8 @@ import {
   cardList,
 } from "../utils/utils.js";
 import { FormValidator } from "../components/FormValidator.js";
+
+import { UserInfo } from "../components/UserInfo";
 
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const addPlaceButton = profile.querySelector(".profile__add-button");
@@ -86,6 +92,23 @@ addFormValidator.enableValidation();
 
 initialCards.forEach((card) => renderCard(card, cardList));
 
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__title",
+});
+
+const editPopup = new PopupWithForm(".popup_type_edit-profile", (data) => {
+  userInfo.setUserInfo(data.name, data.title);
+});
+editPopup.setEventListeners();
+
+const addCardPopup = new PopupWithForm(".popup_type_add-place", (data) => {
+  renderCard(data, cardList);
+  addCardPopup.close();
+  addFormValidator.resetFormButton();
+});
+addCardPopup.setEventListeners();
+
 //////////////////
 // Event Listeners
 //////////////////
@@ -93,15 +116,16 @@ editProfileButton.addEventListener("click", () => {
   fillProfileFormFields();
   profileFormValidator.enableButton();
   profileFormValidator.hideErrorsOnOpen();
-  //openModal(profileModal);
-  new Popup(".popup_type_edit-profile").open();
+  editPopup.open();
 });
 
 profileCloseButton.addEventListener("click", () => closeModal(profileModal));
 addPlaceButton.addEventListener("click", () => {
-  openModal(addPlaceModal);
+  addCardPopup.open();
+  addFormValidator.hideErrorsOnOpen();
 });
+
 placeCloseButton.addEventListener("click", () => closeModal(addPlaceModal));
 imgPrevCloseButton.addEventListener("click", () => closeModal(imgPrevModal));
-profileForm.addEventListener("submit", handleProfileFormSubmit);
-placeForm.addEventListener("submit", addCard);
+//profileForm.addEventListener("submit", handleProfileFormSubmit);
+//placeForm.addEventListener("submit", addCard);
