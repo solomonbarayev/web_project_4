@@ -10,13 +10,13 @@ export class PopupWithForm extends Popup {
   _getInputValues() {
     //collects data from all the input fields and returns that data as an object.
     this._inputList = [...this._formElement.querySelectorAll(".form__input")];
-    this._inputValues = {};
+    const inputValues = {};
 
     this._inputList.forEach((input) => {
-      this._inputValues[input.name] = input.value;
+      inputValues[input.name] = input.value;
     });
 
-    return this._inputValues;
+    return inputValues;
   }
 
   setEventListeners() {
@@ -24,13 +24,13 @@ export class PopupWithForm extends Popup {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
       this._submitHandler(this._getInputValues());
+      this._formElement.reset();
       this.close();
     });
     super.setEventListeners();
   }
   close = () => {
     //It modifies the close() parent method in order to reset the form once the popup is closed.
-    this._formElement.reset();
     super.close();
   };
 }

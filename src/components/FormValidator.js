@@ -55,9 +55,7 @@ export class FormValidator {
   }
 
   _setEventListeners() {
-    this._inputList = Array.from(
-      this._form.querySelectorAll(this._inputSelector)
-    );
+    this._inputList = [...this._form.querySelectorAll(this._inputSelector)];
     this._button = this._form.querySelector(this._submitButtonSelector);
     this._toggleButton();
     this._inputList.forEach((input) => {
@@ -77,7 +75,7 @@ export class FormValidator {
     this._disableButton();
   }
 
-  hideErrorsOnOpen() {
+  hideErrors() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });

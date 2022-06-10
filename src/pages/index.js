@@ -28,23 +28,27 @@ import { Card } from "../components/Card";
 /*   Initial Card Creation   */
 ///////////////////////////////
 
-const section = new Section(
+const placesSection = new Section(
   {
     items: initialCards,
-    renderer: (data) => {
-      renderCard(data, cardList);
-    },
+    renderer: (data) => renderCard(data),
   },
   ".cards__list"
 );
 
-section.render();
+placesSection.render();
 
-function renderCard(card, list) {
-  const cardToRender = new Card(card, cardTemplateSelector, () => {
-    imagePopup.open(card.link, card.name);
-  }).generateCard();
-  list.prepend(cardToRender);
+function generateCard(data) {
+  const card = new Card(data, cardTemplateSelector, () => {
+    imagePopup.open(data.link, data.name);
+  });
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+function renderCard(data) {
+  const element = generateCard(data);
+  placesSection.addItem(element);
 }
 
 //////////////////////////////////////////
@@ -75,7 +79,7 @@ const editPopup = new PopupWithForm(".popup_type_edit-profile", (data) => {
 editPopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm(".popup_type_add-place", (data) => {
-  section.addItem(data);
+  renderCard(data);
   addFormValidator.resetFormButton();
 });
 addCardPopup.setEventListeners();
@@ -90,12 +94,12 @@ editProfileButton.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
   inputName.value = info.name;
   inputTitle.value = info.job;
-  profileFormValidator.hideErrorsOnOpen();
+  profileFormValidator.hideErrors();
   profileFormValidator.enableButton();
   editPopup.open();
 });
 
 addPlaceButton.addEventListener("click", () => {
   addCardPopup.open();
-  addFormValidator.hideErrorsOnOpen();
+  addFormValidator.hideErrors();
 });
