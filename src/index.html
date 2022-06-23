@@ -24,14 +24,13 @@
   <main class="content section">
     <div class="separator"></div>
     <section class="profile">
-      <img src="<%=require('./images/profile__image.jpg')%>" alt="Jacques Cousteau Profile Picture"
-        class="profile__image" />
+      <img src="#" alt="User's Profile Picture" class="profile__image" />
       <div class="profile__info">
         <div class="profile__person">
-          <h1 class="profile__name">Jacques Cousteau</h1>
+          <h1 class="profile__name"></h1>
           <button class="profile__edit-button" type="button" aria-label="edit profile"></button>
         </div>
-        <p class="profile__title">Explorer</p>
+        <p class="profile__title"></p>
       </div>
       <button class="profile__add-button" type="button" aria-label="add place"></button>
     </section>
@@ -101,13 +100,32 @@
       <p class="popup__caption"></p>
     </div>
   </div>
+
+  <!-- delete card popup -->
+  <div class="popup popup_type_delete-card">
+    <div class="popup__container">
+      <button class="popup__close-button popup__close-button_type_delete-card" type="button"></button>
+      <h2 class="popup__title">Are you sure?</h2>
+      <form action="submit" class="form popup__form popup__form_type_delete-card" novalidate autocomplete="off">
+        <fieldset class="form__fieldset">
+          <button class="form__button form__button_type_delete-card" type="submit">
+            Yes
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+
   <template id="card-template">
     <li class="card">
       <button type="button" aria-label="delete card" class="card__delete-button"></button>
       <img src="#" alt="#" class="card__image" />
       <div class="card__title-area">
         <h2 class="card__title"></h2>
+
         <button class="card__like-button" type="button" aria-label="like card"></button>
+        <span class="card__like-count"></span>
       </div>
     </li>
   </template>
