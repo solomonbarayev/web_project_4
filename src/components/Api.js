@@ -68,15 +68,23 @@ class Api {
       .catch((err) => console.log(err));
   }
 
-  // likeCard(cardId) {
-  //   return fetch(`${this._baseUrl}/likes/${cardId}`, {
-  //     headers: this._headers,
-  //     method: "PUT",
-  //     body: JSON.stringify(),
-  //   })
-  //     .then((res) => res.ok && res.json())
-  //     .catch((err) => console.log(err));
-  // }
+  likeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      headers: this._headers,
+      method: "PUT",
+    })
+      .then((res) => res.ok && res.json())
+      .catch((err) => console.log(err));
+  }
+
+  dislikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      headers: this._headers,
+      method: "DELETE",
+    })
+      .then((res) => res.ok && res.json())
+      .catch((err) => console.log(err));
+  }
 }
 
 export const api = new Api({

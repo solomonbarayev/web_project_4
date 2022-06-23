@@ -2,9 +2,7 @@ export class Card {
   constructor(
     data,
     selector,
-    handleCardClick,
-    handleDeleteCard,
-    handleLikeCard,
+    { handleCardClick, handleDeleteCard, handleLikeCard },
     userId
   ) {
     this._text = data.name;
@@ -16,7 +14,7 @@ export class Card {
     this._id = data._id;
     this._userId = userId;
     this._ownerId = data.owner._id;
-    this._likes = data.likes.length;
+    this._likes = data.likes;
   }
 
   _getCloneFromTemplate() {
@@ -52,6 +50,24 @@ export class Card {
     this._element = null;
   }
 
+  likeCard(newLikes) {
+    this._likeButton.classList.add("card__like-button_active");
+    // this._likeCount.textContent = newLikesCount;
+    this._likes = newLikes;
+    this._likeCount.textContent = this._likes.length;
+  }
+
+  dislikeCard(newLikes) {
+    this._likeButton.classList.remove("card__like-button_active");
+    // this._likeCount.textContent = newLikesCount;
+    this._likes = newLikes;
+    this._likeCount.textContent = this._likes.length;
+  }
+
+  isLiked() {
+    return this._likes.some((like) => like._id === this._userId);
+  }
+
   generateCard() {
     this._element = this._getCloneFromTemplate();
     this._image = this._element.querySelector(".card__image");
@@ -67,7 +83,9 @@ export class Card {
       (this._deleteButton.style.display = "none");
 
     this._likeCount = this._element.querySelector(".card__like-count");
-    this._likeCount.textContent = this._likes;
+    this._likeCount.textContent = this._likes.length;
+
+    this.isLiked() && this.likeCard(this._likes);
 
     this._setEventListeners();
 

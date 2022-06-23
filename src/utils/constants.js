@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
-
 const editProfileButton = document.querySelector(".profile__edit-button");
 const addPlaceButton = document.querySelector(".profile__add-button");
 
@@ -37,6 +10,11 @@ const validationConfigurations = {
 };
 
 const profileForm = document.querySelector(".popup__form_type_profile");
+
+const editSubmitButton = profileForm.querySelector(
+  validationConfigurations.submitButtonSelector
+);
+
 const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
 const profileTitle = profile.querySelector(".profile__title");
@@ -47,12 +25,25 @@ const placeForm = document.querySelector(".popup__form_type_add-place");
 const addPlaceModal = document.querySelector(".popup_type_add-place");
 const imgPrevModal = document.querySelector(".popup_type_image-prev");
 
-const cards = document.querySelector(".cards");
-const cardList = cards.querySelector(".cards__list");
 const cardTemplateSelector = "#card-template";
+const avatar = document.querySelector(".profile__image-container");
+const avatarForm = document.querySelector(".popup__form_type_avatar");
+const avatarSubmitButton = avatarForm.querySelector(
+  validationConfigurations.submitButtonSelector
+);
+const addPlaceSubmitButton = placeForm.querySelector(
+  validationConfigurations.submitButtonSelector
+);
+const profileImage = document.createElement("img");
+const profileImageContainer = document.querySelector(
+  ".profile__image-container"
+);
 
 export {
-  initialCards,
+  profileImage,
+  profileImageContainer,
+  avatar,
+  avatarForm,
   editProfileButton,
   addPlaceButton,
   validationConfigurations,
@@ -65,6 +56,8 @@ export {
   placeForm,
   addPlaceModal,
   imgPrevModal,
-  cardList,
   cardTemplateSelector,
+  editSubmitButton,
+  avatarSubmitButton,
+  addPlaceSubmitButton,
 };

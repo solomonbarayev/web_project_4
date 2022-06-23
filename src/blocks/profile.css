@@ -12,6 +12,35 @@
   border-radius: 50%;
   max-width: 120px;
   max-height: 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.profile__image-container {
+  position: relative;
+  border-radius: 100px;
+}
+
+.profile__image-container::before {
+  cursor: pointer;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 100px;
+  height: 100%;
+  z-index: 5;
+  transition: background-color 0.4s ease-out;
+}
+
+.profile__image-container:hover::before {
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url("../images/icons/edit_icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
 }
 
 .profile__info {

@@ -13,4 +13,10 @@ export class UserInfo {
     this._profileName.textContent = name;
     this._profileJob.textContent = job;
   }
+
+  //set up with avatarElement parameter so that image can be added to DOM only after successfully fetched from server
+  setUserAvatar(avatarElement, avatar) {
+    this._avatar = avatarElement;
+    this._avatar.src = avatar;
+  }
 }

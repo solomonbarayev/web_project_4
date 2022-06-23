@@ -24,7 +24,9 @@
   <main class="content section">
     <div class="separator"></div>
     <section class="profile">
-      <img src="#" alt="User's Profile Picture" class="profile__image" />
+      <div class="profile__image-container">
+        <!-- <img src="#" alt="User's Profile Picture" class="profile__image" /> -->
+      </div>
       <div class="profile__info">
         <div class="profile__person">
           <h1 class="profile__name"></h1>
@@ -117,6 +119,29 @@
   </div>
 
 
+  <!-- edit avatar popup -->
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button class="popup__close-button popup__close-button_type_avatar" type="button"></button>
+      <h2 class="popup__title">Change Profile Picture</h2>
+      <form action="submit" class="form popup__form popup__form_type_avatar" novalidate autocomplete="off">
+        <fieldset class="form__fieldset">
+          <div class="form__input-container">
+            <input id="avatar-input" type="url" name="link" placeholder="Profile Image link"
+              class="form__input form__input_type_avatar" required />
+            <span class="form__input-error avatar-input-error"></span>
+          </div>
+        </fieldset>
+        <fieldset class="form__fieldset">
+          <button class="form__button form__button_type_avatar" type="submit">
+            Save
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+
   <template id="card-template">
     <li class="card">
       <button type="button" aria-label="delete card" class="card__delete-button"></button>
@@ -124,8 +149,10 @@
       <div class="card__title-area">
         <h2 class="card__title"></h2>
 
-        <button class="card__like-button" type="button" aria-label="like card"></button>
-        <span class="card__like-count"></span>
+        <div class="card__like-container">
+          <button class="card__like-button" type="button" aria-label="like card"></button>
+          <span class="card__like-count"></span>
+        </div>
       </div>
     </li>
   </template>
