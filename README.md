@@ -1,4 +1,4 @@
-# Project 8: Around The U.S.
+# Project 9: Around The U.S.
 
 ### Overview
 
@@ -10,6 +10,7 @@ This is a project that showcases a trip to the US by a particular traveler. All 
 
 ### Project features
 
+- API Interaction
 - Javascript ES6 Classes
 - Webpack, Postcss, Babel
 - Javascript DOM manipulation
