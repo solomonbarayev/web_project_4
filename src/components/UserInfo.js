@@ -21,4 +21,8 @@ export class UserInfo {
   setUserAvatar(avatar) {
     this._avatar.src = avatar;
   }
+
+  setAvatarVisible() {
+    this._avatar.style.visibility = "visible";
+  }
 }

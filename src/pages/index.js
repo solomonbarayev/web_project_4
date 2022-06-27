@@ -44,6 +44,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     userInfo.setUserInfo(userData.name, userData.about);
     userInfo.setUserAvatar(userData.avatar);
   })
+  .then(() => userInfo.setAvatarVisible())
   .catch((err) => console.log(err));
 
 function generateCard(data) {
