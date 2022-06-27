@@ -4,20 +4,23 @@ class Api {
     this._headers = headers;
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error ${res.status}`);
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then((res) => res.ok && res.json())
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    })
-      .then((res) => res.ok && res.json())
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   setUserInfo(name, about) {
@@ -28,9 +31,7 @@ class Api {
         name: name,
         about: about,
       }),
-    })
-      .then((res) => res.ok && res.json())
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   setUserAvatar(url) {
@@ -44,9 +45,7 @@ class Api {
       body: JSON.stringify({
         avatar: url,
       }),
-    })
-      .then((res) => res.ok && res.json())
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   createCard(data) {
@@ -54,36 +53,28 @@ class Api {
       headers: this._headers,
       method: "POST",
       body: JSON.stringify(data),
-    })
-      .then((res) => res.ok && res.json())
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       headers: this._headers,
       method: "DELETE",
-    })
-      .then((res) => res.ok && res.json())
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       headers: this._headers,
       method: "PUT",
-    })
-      .then((res) => res.ok && res.json())
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 
   dislikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       headers: this._headers,
       method: "DELETE",
-    })
-      .then((res) => res.ok && res.json())
-      .catch((err) => console.log(err));
+    }).then(this._checkResponse);
   }
 }
 

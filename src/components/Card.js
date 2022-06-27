@@ -25,18 +25,12 @@ export class Card {
     return cardElement;
   }
 
-  _handleLikeButton(evt) {
-    evt.target.classList.toggle("card__like-button_active");
-    this._handelLikeCard(this._id);
-  }
-
   _setEventListeners() {
     this._element.addEventListener("click", (evt) => {
       if (evt.target === this._likeButton) {
-        this._handleLikeButton(evt);
+        this._handelLikeCard(this._id);
       }
       if (evt.target === this._deleteButton) {
-        // evt.currentTarget.remove();
         this._handleDeleteCard(this._id);
       }
       if (evt.target === this._image) {

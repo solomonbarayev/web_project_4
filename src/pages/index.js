@@ -7,20 +7,11 @@ import {
   addPlaceButton,
   validationConfigurations,
   profileForm,
-  inputName,
-  inputTitle,
   placeForm,
   cardTemplateSelector,
   avatar,
   avatarForm,
-  editSubmitButton,
-  avatarSubmitButton,
-  addPlaceSubmitButton,
-  profileImage,
-  profileImageContainer,
 } from "../utils/constants";
-
-import { improveUI, resetAndCloseForm } from "../utils/utils";
 
 import { PopupWithForm } from "../components/PopupWithForm";
 import { PopupWithImage } from "../components/PopupWithImage.js";
@@ -39,31 +30,21 @@ import { PopupWithSubmit } from "../components/PopupWithSubmit";
 
 const placesSection = new Section(
   {
-    renderer: (data) => renderCard(data),
+    renderer: renderCard,
   },
   ".cards__list"
 );
 
 let userId;
 
-//setting up avatar image to load through callback to avoid empty image on load
-profileImage.alt = "User's Profile Pic";
-profileImage.classList.add("profile__image");
-
-Promise.all([api.getInitialCards(), api.getUserInfo()]).then(
-  ([cards, userData]) => {
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([cards, userData]) => {
     userId = userData._id;
-
     placesSection.renderItems(cards);
-
     userInfo.setUserInfo(userData.name, userData.about);
-
-    //adding avatar image only after successful fetch from api
-    profileImageContainer.prepend(profileImage);
-
-    userInfo.setUserAvatar(profileImage, userData.avatar);
-  }
-);
+    userInfo.setUserAvatar(userData.avatar);
+  })
+  .catch((err) => console.log(err));
 
 function generateCard(data) {
   const card = new Card(
@@ -78,11 +59,18 @@ function generateCard(data) {
 
         deletePopup.setAction(() => {
           // submit modal
-          api.deleteCard(id).then((res) => {
-            console.log("card is deleted", res);
-            //remove it from DOM
-            card.removeCard();
-          });
+          api
+            .deleteCard(id)
+            .then((res) => {
+              console.log("card is deleted", res);
+              //remove it from DOM
+              card.removeCard();
+            })
+            .then(() => {
+              console.log("server deleted card");
+              deletePopup.close();
+            })
+            .catch((err) => console.log(err));
         });
       },
       handleLikeCard: (id) => {
@@ -90,19 +78,23 @@ function generateCard(data) {
 
         if (isLiked) {
           //dislike card
-          api.dislikeCard(id).then((res) => {
-            card.dislikeCard(res.likes);
-            console.log("card is disliked", res);
-          });
+          api
+            .dislikeCard(id)
+            .then((res) => {
+              card.dislikeCard(res.likes);
+              console.log("card is disliked", res);
+            })
+            .catch((err) => console.log(err));
         } else {
           //like card
-          api.likeCard(id).then((res) => {
-            card.likeCard(res.likes);
-            console.log("card is liked", res);
-          });
+          api
+            .likeCard(id)
+            .then((res) => {
+              card.likeCard(res.likes);
+              console.log("card is liked", res);
+            })
+            .catch((err) => console.log(err));
         }
-
-        card.isLiked();
       },
     },
     //comparing userId to cardId
@@ -147,23 +139,28 @@ const userInfo = new UserInfo({
 ////////////////////////////////
 
 const editPopup = new PopupWithForm(".popup_type_edit-profile", (data) => {
-  improveUI(editSubmitButton, "Saving...");
-  api.setUserInfo(data.name, data.title).then((data) => {
-    improveUI(editSubmitButton, "Saving");
-    userInfo.setUserInfo(data.name, data.about);
-    resetAndCloseForm(profileForm, editPopup);
-  });
+  editPopup.renderLoading(true, "Saving...");
+  api
+    .setUserInfo(data.name, data.title)
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about);
+      editPopup.close();
+    })
+    .catch((err) => console.log(err))
+    .finally(() => editPopup.renderLoading(false));
 });
 editPopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm(".popup_type_add-place", (data) => {
-  improveUI(addPlaceSubmitButton, "Creating...");
-  api.createCard(data).then((res) => {
-    renderCard(res);
-    improveUI(addPlaceSubmitButton, "Create");
-    resetAndCloseForm(placeForm, addCardPopup);
-  });
-  addFormValidator.resetFormButton();
+  addCardPopup.renderLoading(true, "Creating...");
+  api
+    .createCard(data)
+    .then((res) => {
+      renderCard(res);
+      addCardPopup.close();
+    })
+    .catch((err) => console.log(err))
+    .finally(() => addCardPopup.renderLoading(false));
 });
 addCardPopup.setEventListeners();
 
@@ -174,12 +171,15 @@ const deletePopup = new PopupWithSubmit(".popup_type_delete-card");
 deletePopup.setEventListeners();
 
 const avatarPopup = new PopupWithForm(".popup_type_avatar", (data) => {
-  improveUI(avatarSubmitButton, "Saving avatar...");
-  api.setUserAvatar(data.link).then((res) => {
-    userInfo.setUserAvatar(profileImage, res.avatar);
-    improveUI(avatarSubmitButton, "Save");
-    resetAndCloseForm(avatarForm, avatarPopup);
-  });
+  avatarPopup.renderLoading(true, "Saving avatar...");
+  api
+    .setUserAvatar(data.link)
+    .then((res) => {
+      userInfo.setUserAvatar(res.avatar);
+      avatarPopup.close();
+    })
+    .catch((err) => console.log(err))
+    .finally(() => avatarPopup.renderLoading(false));
 });
 avatarPopup.setEventListeners();
 
@@ -188,18 +188,19 @@ avatarPopup.setEventListeners();
 //////////////////
 editProfileButton.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
-  inputName.value = info.name;
-  inputTitle.value = info.job;
+  editPopup.setInputValues(info);
   profileFormValidator.hideErrors();
   profileFormValidator.enableButton();
   editPopup.open();
 });
 
 addPlaceButton.addEventListener("click", () => {
+  addFormValidator.resetFormButton();
   addCardPopup.open();
   addFormValidator.hideErrors();
 });
 
 avatar.addEventListener("click", () => {
+  avatarFormValidator.resetFormButton();
   avatarPopup.open();
 });
